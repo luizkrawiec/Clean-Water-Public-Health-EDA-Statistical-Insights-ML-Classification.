@@ -1,75 +1,64 @@
-# 🌍 Clean Water & Public Health: Data Analysis and Classification
+# 🌍 Clean Water Access & Public Health – Statistical Analysis and Machine Learning Classification
 
-This project explores the relationships between access to clean water, environmental quality, and public health outcomes across countries using a real-world dataset. It involves exploratory data analysis (EDA), statistical insights, feature engineering, and classification modeling to predict levels of access to clean water.
+This project explores the relationship between access to clean water and public health, environmental, and socioeconomic indicators across different countries. Using a dataset with over 3,000 records and various qualitative and quantitative variables, we performed a complete analysis involving:
 
----
-
-## 📊 Project Overview
-
-### Objectives:
-- Understand patterns of clean water access across regions.
-- Explore environmental and socio-economic factors affecting water quality and public health.
-- Apply machine learning to classify countries by their access to clean water.
+- 📊 **Exploratory Data Analysis (EDA)**
+- 📈 **Descriptive statistics and bivariate analysis**
+- 🧠 **Predictive modeling with machine learning algorithms**
+- 🧪 **Hyperparameter optimization and model evaluation**
 
 ---
 
-## 🔍 Dataset
+## 🔍 Objective
 
-The dataset includes information on:
-
-- **Water Quality Indicators**: pH, nitrate, turbidity, lead, bacterial count, dissolved oxygen.
-- **Public Health Metrics**: diarrhea cases, typhoid, cholera, infant mortality.
-- **Socioeconomic Features**: GDP per capita, urbanization rate, population density.
-- **Target**: `Water_Access_Level` (Low, Medium, High)
-
-Data was filtered for Brazil for some of the analysis and modeling.
+To investigate how environmental factors (such as water contamination, pH levels, and bacterial presence), socioeconomic indicators (GDP per capita, population density), and health metrics relate to the level of access to clean water in different countries.
 
 ---
 
-## 🧪 Exploratory Data Analysis (EDA)
+## 🧬 Project Pipeline
 
-- Distribution and variability of water quality indicators.
-- Comparison of public health outcomes across different water source types.
-- Correlation matrix and pairwise plots for quantitative features.
-- Grouped bar charts and heatmaps to compare countries and regions.
-
----
-
-## 📈 Statistical Analysis
-
-- Frequency distributions and proportions for categorical variables.
-- Mean comparisons and trend analysis across `Water_Access_Level`.
-- Investigated potential risk factors related to low access to clean water.
+1. **Data loading and cleaning**
+2. **Transformations and creation of the target variable (`Water_Access_Level`)**
+3. **Descriptive and inferential statistical analysis**
+4. **Feature engineering and data preparation for machine learning**
+5. **Building a pipeline with `XGBoostClassifier`**
+6. **Hyperparameter tuning using `GridSearchCV` (testing 243 combinations)**
+7. **Model evaluation with confusion matrix and classification report**
 
 ---
 
-## 🤖 Machine Learning Approach
+## 🛠️ Technologies and Libraries
 
-**Model Used:** XGBoost Classifier  
-**Goal:** Predict the category of `Water_Access_Level` (Low, Medium, High)
+- Python (pandas, numpy, seaborn, matplotlib)
+- Scikit-learn
+- XGBoost
+- Jupyter Notebook / Google Colab
 
-### 🔧 Pipeline & Preprocessing
+---
 
-- Categorical encoding (OneHotEncoder)
-- ColumnTransformer to separate numeric and categorical features
-- StandardScaler for numeric variables
+## 📈 Results
 
-### 📌 Hyperparameter Tuning
+The final model (using `XGBoost` with hyperparameter optimization) achieved the following results on the test set:
 
-Used `GridSearchCV` with 5-fold cross-validation:
-- `learning_rate`
-- `n_estimators`
-- `max_depth`
-- `subsample`
-- `colsample_bytree`
+- 🎯 Accuracy: **0.3977**
+- 🎯 Best parameters:
+  ```python
+  {
+    'classifier__colsample_bytree': 0.8,
+    'classifier__learning_rate': 0.01,
+    'classifier__max_depth': 3,
+    'classifier__n_estimators': 100,
+    'classifier__subsample': 1.0
+  }
 
-### ✅ Best Parameters
-```python
-{
-  'classifier__colsample_bytree': 0.8,
-  'classifier__learning_rate': 0.01,
-  'classifier__max_depth': 3,
-  'classifier__n_estimators': 100,
-  'classifier__subsample': 1.0
-}
+## 📉 Most challenging class: low performance in predicting the "Low Access to Clean Water" class, highlighting potential class imbalance or intrinsic complexity in the data.
 
+## 📚 Key Learnings
+
+    The importance of statistical analysis before machine learning modeling
+
+    Challenges of working with real-world environmental and social datasets
+
+    Practical experience with ML pipelines and cross-validation
+
+    Understanding evaluation metrics beyond accuracy (f1-score, recall)
